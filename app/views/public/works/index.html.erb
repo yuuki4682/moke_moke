@@ -9,11 +9,13 @@
       <h2>作品一覧</h2>
       <% @works.each do |work| %>
         <%= link_to work_path(work) do %>
-          <div class="card bg-dark text-light shadow">
+          <div class="card shadow mb-5">
             <%= image_tag work.main_image, size:"600x600", class:"card-img" %>
-            <div class="card-img-overlay d-flex flex-column p-0">
-              <div class="p-3" style="background: rgba(51,112,121,0.5);">
-                <%= work.title %>
+            <div class="card-img-overlay d-flex flex-column-reverse">
+              <div class="p-3 m-2 rounded text-dark" style="background: rgba(248,248,255,0.5);">
+                <div class="text-center">
+                  <h4><%= work.title %></h4>
+                </div>
               </div>
             </div>
           </div>
