@@ -13,8 +13,12 @@
         <ul class="navbar-nav mr-auto h5">
           <% if user_signed_in? %>
             <li class="nav-item">
+              <%= link_to "マイページ", mypage_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "投稿する", new_work_path, class:"nav-link" %>
-            </li>            <li class="nav-item">
+            </li>
+            <li class="nav-item">
               <%= link_to "投稿作品", works_path, class:"nav-link" %>
             </li>
             <li class="nav-item">

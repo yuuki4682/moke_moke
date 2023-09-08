@@ -1,0 +1,9 @@
+ <% if work.liked_by?(current_user) %>
+  <%= link_to work_likes_path(work), method: :delete, remote: true, class:"text-danger", data: {"turbolinks" => false} do %>
+    <i class="fa-solid fa-heart"></i><%= work.likes.count %>
+  <% end %>
+<% else %>
+  <%= link_to work_likes_path(work), method: :post, remote: true, class:"text-danger", data: {"turbolinks" => false} do %>
+    <i class="fa-regular fa-heart"></i><%= work.likes.count %>
+  <% end %>
+<% end %>

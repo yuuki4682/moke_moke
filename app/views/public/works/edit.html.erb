@@ -1,2 +1,10 @@
-<h1>Public::Works#edit</h1>
-<p>Find me in app/views/public/works/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 m-auto shadow rounded p-0 border">
+      <h2 class="text-center p-2 bg-secondary text-light rounded-top">投稿を編集する</h2>
+      <div class="p-4">
+        <%= render 'form', work: @work %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="border p-2">
+  <% if comments.blank? %>
+    <div class="text-secondary">コメントはありません。</div>
+  <% end %>
+  <% comments.each do |comment| %>
+    <div class="border-bottom mt-2">
+      <div class="d-flex align-items-center">
+        <%= image_tag comment.user.get_profile_image(40,40), class:"rounded-circle mr-1" %> 
+        |<%= comment.user.name %>
+        <% if comment.user == current_user || work.user == current_user %>
+          <%= link_to 'コメント削除', work_comments_path(comment.work, comment), method: :delete, class:"btn btn-outline-secondary btn-sm ml-auto" %>
+        <% end %>
+      </div>
+      <%= comment.message %>
+    </div>
+  <% end %>
+</div>

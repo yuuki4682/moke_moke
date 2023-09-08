@@ -1,2 +1,11 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'info', user: @user %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>投稿作品</h2>
+      <%= render 'public/works/index', works: @user.works %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="card container p-0 m-0 shadow">
+  
+  <div class="d-flex border-bottom">
+    <div>
+      <%= link_to user_path(user) do %>
+        <%= image_tag user.get_profile_image(70,70), class:"rounded-circle p-2" %>
+      <% end %>
+    </div>
+    <div class="w-100 p-1">
+      <div class="text-right">
+        <%= link_to edit_user_path(user), class:"text-secondary" do %>
+          <i class="fa-solid fa-gear"></i>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to user_path(user), class:"text-dark" do %>
+          <h5 class="m-2"><%= user.name %></h5>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <table class="table table-borderless text-center">
+    <tr>
+      <th>フォロー中</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>フォロワー</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>いいね</th>
+      <td>
+        <%= link_to user_likes_path(user) do %>
+          <%= user.likes.count %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>通知</th>
+      <td></td>
+    </tr>
+  </table>
+  
+</div>

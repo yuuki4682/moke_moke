@@ -18,21 +18,20 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "about" => "homes#about", as: :about
     resources :users, only: [:show, :edit, :update] do
-      collection do
-        get "mypage"
-      end
       resources :chats, only: [:show, :create, :destroy]
       resources :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: :followings
       get "followers" => "relationships#followers", as: :followers
       resources :likes, only: [:index] #ユーザーがいいねした一覧
     end
+    get 'mypage' => 'users#mypage', as: :mypage
     resources :works do
       resources :comments, only: [:create, :destroy]
       resource :likes, only: [:create, :destroy]
     end
     resources :notifications, only: [:index]
     get "search" => "search#search", as: :search
+    get "tags/:id" => "tags#search", as: :tag_search
   end
   
   #管理者側ルート設定

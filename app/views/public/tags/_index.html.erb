@@ -1,0 +1,8 @@
+<span class="font-weight-light">
+  <% work.tags.first(4).each do |tag| %>
+    <i class="fa-solid fa-tag fa-sm"></i> <small><%= tag.name %></small>
+  <% end %>
+  <% if work.tags.count >= 5 %>
+  ...
+  <% end %>
+</span>

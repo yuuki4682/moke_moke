@@ -1,0 +1,34 @@
+<% works.each do |work| %>
+  <div class="mb-2">
+    <%= link_to work_path(work) do %>
+      <div class="card shadow mb-1">
+        <%= image_tag work.main_image, class:"card-img img-fluid" %>
+      </div>
+    <% end %>
+    <div class="d-flex flex-row-reverse">
+      <div class="card w-50">
+        <div class="row no-gutters">
+          
+          <div class="col-md-2 p-2">
+            <%= image_tag work.user.get_profile_image(50,50), class:"rounded-circle" %>
+          </div>
+          
+          <div class="col-md-8 d-flex flex-column p-2">
+            <%= work.title %>
+            <%= render 'public/tags/index', work: work %>
+            <%= link_to user_path(work.user), class:"text-dark" do %>
+              <span><i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong></span>
+            <% end %>
+          </div>
+          
+          <div class="col-md-2">
+            <div id="like_btn_<%= work.id %>">
+              <%= render 'public/likes/btn', work: work %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
