@@ -21,7 +21,9 @@ class User < ApplicationRecord
   has_many :reverse_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
   
-  
+  #通知機能
+  has_many :notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  has_many :reverse_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
   
   has_one_attached :profile_image
   
@@ -54,6 +56,22 @@ class User < ApplicationRecord
   
   def following?(user)
     followings.include?(user)
+  end
+  
+  def create_notification_follow(current_user)
+    #一度通知したものは通知しない
+    unless Notification.where(visitor_id: current_user, visited_id: id, action: "follow").present?
+      @notification = current_user.notifications.new(
+        visited_id: id,
+        action: 3
+        )
+      @notification.save
+    end
+  end
+  
+  def have_unread_notification?
+    notifications = Notification.where(visited_id: id)
+    notifications.find_by(checked: false).present?
   end
   
 end

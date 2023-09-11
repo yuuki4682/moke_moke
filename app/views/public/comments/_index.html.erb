@@ -7,6 +7,7 @@
       <div class="d-flex align-items-center">
         <%= image_tag comment.user.get_profile_image(40,40), class:"rounded-circle mr-1" %> 
         |<%= comment.user.name %>
+        <!--work投稿者とcomment投稿者のみ削除可能-->
         <% if comment.user == current_user || work.user == current_user %>
           <%= link_to 'コメント削除', work_comments_path(comment.work, comment), method: :delete, class:"btn btn-outline-secondary btn-sm ml-auto" %>
         <% end %>

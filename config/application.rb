@@ -11,6 +11,10 @@ module MokeMoke
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    #日本語化
+    config.i18n.default_locale = :ja
+    #時間設定＝東京
+    config.time_zone = 'Tokyo'
     #sub_imagesの編集で上書きしない設定
     config.active_storage.replace_on_assign_to_many = false
 

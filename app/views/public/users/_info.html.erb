@@ -50,10 +50,20 @@
         <% end %>
       </td>
     </tr>
-    <tr>
-      <th>通知</th>
-      <td></td>
-    </tr>
+    <% if user == current_user %>
+      <tr>
+        <th>通知</th>
+        <td>
+          <%= link_to notifications_path do %>
+            <% if user.have_unread_notification? %>
+              <p class="text-danger m-0">未読あり</p>
+            <% else %>
+              <p class="m-0">新着なし</p>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </table>
   
 </div>

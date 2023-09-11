@@ -1,8 +1,26 @@
 class Chat < ApplicationRecord
+    
+  belongs_to :user
+  belongs_to :room
+  has_many :user_rooms, through: :room
   
-belongs_to :user
-belongs_to :room
-
-validates :message, presence: true
+  has_many :notifications, dependent: :destroy
+  
+  validates :message, presence: true
+  
+  def create_notification_chat
+    #オブジェクトに紐づいる2つのuser_roomsからチャットの送信者ではないほうを取得
+    visited_user_room = self.user_rooms.where.not(user_id: self.user_id)
+    #user_roomからuser_idの値のみ取得
+    visited = visited_user_room.pluck(:user_id)[0]
+    
+    @notification = self.user.notifications.new(
+      visited_id: visited,
+      chat_id: id,
+      action: 1
+      )
+    @notification.save
+    
+  end
 
 end

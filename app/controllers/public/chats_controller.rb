@@ -24,6 +24,7 @@ class Public::ChatsController < ApplicationController
   def create
     @chat = current_user.chats.new(chat_params)
     @chat.save
+    @chat.create_notification_chat
     redirect_to request.referer 
   end
   
@@ -36,7 +37,7 @@ class Public::ChatsController < ApplicationController
   private
   
   def chat_params
-    params.require(:chat).permit(:message, :room_id)
+    params.require(:chat).permit(:message, :room_id, :receiver_id)
   end
   
   def reject_non_related

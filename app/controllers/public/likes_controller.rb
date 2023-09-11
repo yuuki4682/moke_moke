@@ -9,6 +9,7 @@ class Public::LikesController < ApplicationController
     @work = Work.find(params[:work_id])
     like = current_user.likes.new(work_id: @work.id)
     like.save
+    @work.create_notification_like(current_user)
   end
   
   def destroy

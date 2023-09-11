@@ -1,2 +1,40 @@
-<h1>Public::Notifications#index</h1>
-<p>Find me in app/views/public/notifications/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'public/users/info', user: current_user %>
+      <%= render 'public/tags/index', tags: @tags %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>通知一覧</h2>
+      <table class="table table-striped table-bordered mt-2">
+        <% @notifications.each do |notification| %>
+          <tr>
+            <td class="d-flex">
+              <%= link_to user_path(notification.visitor) do %>
+                <%= image_tag notification.visitor.get_profile_image(30,30), class:"rounded-circle" %>
+                <%= notification.visitor.name %>さん
+              <% end %>
+              <% case notification.action %>
+              <% when "like" %>
+                が
+                <%= link_to "あなたの投稿", work_path(notification.work) %>をいいねしました。
+              <% when "chat" %>
+                から
+                <%= link_to "メッセージ", chat_path(notification.visitor) %>
+                が届いています。</br>
+              <% when "comment" %>
+                が
+                <%= link_to "あなたの投稿", work_path(notification.work) %>にコメントしました。
+              <% when "follow" %>
+                があなたをフォローしました。
+              <% end %>
+              <div class="text-secondary ml-auto">
+                <small><%= time_ago_in_words(notification.created_at) %>前</small>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
