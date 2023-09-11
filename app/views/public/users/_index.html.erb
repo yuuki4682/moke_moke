@@ -1,0 +1,25 @@
+<table class="table">
+  <% users.each do |user| %>
+    <tr>
+      <td class="p-1">
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.get_profile_image(40,40), class:"rounded-circle" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to user_path(user), class:"text-dark" do %>
+          <h5><%= user.name %></h5>
+        <% end %>
+      </td>
+      <td>
+        投稿数: <%= user.works.count %>
+      </td>
+      <td class="follow_btn_<%= user.id %>">
+        <%= render 'public/relationships/btn', user: user %>
+      </td>
+      <td>
+        <%= render 'public/chats/btn', user: user %>
+      </td>
+    </tr>
+  <% end %>
+</table>

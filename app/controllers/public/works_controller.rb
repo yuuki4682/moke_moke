@@ -3,7 +3,11 @@ class Public::WorksController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def index
-    @works = Work.page(params[:page])
+    if params[:trend]
+      @works = Work.sort_trend
+    else
+      @works = Work.all
+    end
     @tags = Tag.all
   end
 
@@ -27,6 +31,7 @@ class Public::WorksController < ApplicationController
   def show
     @work = Work.find(params[:id])
     @comment = Comment.new
+    @tags = Tag.all
   end
 
   def edit

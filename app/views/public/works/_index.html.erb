@@ -2,7 +2,7 @@
   <div class="mb-2">
     <%= link_to work_path(work) do %>
       <div class="card shadow mb-1">
-        <%= image_tag work.main_image, class:"card-img img-fluid" %>
+        <%= image_tag work.get_main_image(600,350), class:"card-img img-fluid" %>
       </div>
     <% end %>
     <div class="d-flex flex-row-reverse">
@@ -12,13 +12,22 @@
           <div class="col-md-2 p-2">
             <%= image_tag work.user.get_profile_image(50,50), class:"rounded-circle" %>
           </div>
-          
           <div class="col-md-8 d-flex flex-column p-2">
             <%= work.title %>
-            <%= render 'public/tags/index', work: work %>
-            <%= link_to user_path(work.user), class:"text-dark" do %>
-              <span><i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong></span>
-            <% end %>
+            <span class="font-weight-light">
+              <%= render 'public/tags/list', tags: work.tags.first(4) %>
+              <% if work.tags.count >= 5 %>
+                ...
+              <% end %>
+            </span>
+            <div class="d-flex">
+              <%= link_to user_path(work.user), class:"text-dark" do %>
+                <i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong>
+              <% end %>
+              <div class="follow_btn_<%= work.user.id %>">
+                <%= render 'public/relationships/btn', user: work.user %>
+              </div>
+            </div>
           </div>
           
           <div class="col-md-2">

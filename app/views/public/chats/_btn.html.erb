@@ -1,0 +1,5 @@
+<% if current_user.following?(user) && user.following?(current_user) %>
+  <%= link_to chat_path(user.id), class:"btn btn-success btn-sm ml-2" do %>
+    <i class="fa-solid fa-comment"></i> チャット
+  <% end %>
+<% end %>

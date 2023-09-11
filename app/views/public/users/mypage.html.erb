@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-3">
       <%= render 'info', user: @user %>
+      <%= render 'public/tags/index', tags: @tags %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h3>投稿作品</h3>
@@ -14,7 +15,12 @@
             <div class="col-md-5 mh-100">
               <div class="card-body">
                 <h5 class="card-title mb-0"><%= work.title %></h5>
-                <%= render 'public/tags/index', work: work %>
+                <span class="font-weight-light">
+                  <%= render 'public/tags/list', tags: work.tags.first(4) %>
+                  <% if work.tags.count >= 5 %>
+                    ...
+                  <% end %>
+                </span>
                 <p class="card-text"><%= work.caption %></p>
                 <p>
                   <%= link_to '詳細', work_path(work), class:"text-link mx-1" %>|

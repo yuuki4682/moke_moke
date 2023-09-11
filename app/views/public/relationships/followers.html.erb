@@ -1,2 +1,14 @@
-<h1>Public::Relationships#followers</h1>
-<p>Find me in app/views/public/relationships/followers.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'public/users/info', user: @user %>
+      <%= render 'public/tags/index', tags: @tags %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2><%= @user.name %>さんをフォローしているユーザー</h2>
+      <div class="w-75">
+        <%= render 'public/users/index', users: @user.followers %>
+      </div>
+    </div>
+  </div>
+</div>

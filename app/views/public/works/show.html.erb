@@ -3,33 +3,37 @@
     
     <div class="col-md-3">
       <%= render 'public/users/info', user: @work.user %>
+      <%= render 'public/tags/index', tags: @tags %>
     </div>
     
     <div class="col-md-7 offset-md-1">
       <%= render 'slide', work: @work %>
       <div class="card my-2 p-3">
+
         <div class="text-right" id="like_btn_<%= @work.id %>">
           <%= render 'public/likes/btn', work: @work %>
         </div>
+
         <div class="card-title">
           <h5><%= @work.title %></h5>
           <span class="font-weight-light">
-            <% @work.tags.each do |tag| %>
-              <i class="fa-solid fa-tag fa-sm"></i> <small><%= tag.name %></small>
-            <% end %>
+            <%= render 'public/tags/list', tags: @work.tags %>
           </span>
         </div>
+
         <div class="card-text">
           <%= simple_format(@work.caption, class:"m-0") %>
         </div>
+
       </div>
+
       <div>
         <%= render 'public/comments/form', work: @work %>
       </div>
       <div>
         <%= render 'public/comments/index', comments: @work.comments, work: @work %>
       </div>
+
     </div>
-  
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="card container p-0 m-0 shadow">
   
-  <div class="d-flex border-bottom">
+  <div class="d-flex">
     <div>
       <%= link_to user_path(user) do %>
         <%= image_tag user.get_profile_image(70,70), class:"rounded-circle p-2" %>
@@ -19,15 +19,28 @@
       </div>
     </div>
   </div>
-  
+  <div class="border-bottom text-center d-flex px-3 pb-2">
+    <div class="follow_btn_<%= user.id %>">
+      <%= render 'public/relationships/btn', user: user %>
+    </div>
+    <%= render 'public/chats/btn', user: user %>
+  </div>
   <table class="table table-borderless text-center">
     <tr>
       <th>フォロー中</th>
-      <td></td>
+      <td>
+        <%= link_to user_followings_path(user) do %>
+          <%= user.followings.count %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th>フォロワー</th>
-      <td></td>
+      <td>
+        <%= link_to user_followers_path(user) do %>
+          <%= user.followers.count %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th>いいね</th>

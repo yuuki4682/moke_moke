@@ -1,14 +1,6 @@
-<div class="card p-0 m-0 mt-3 shadow text-center">
-  <div class="border-bottom my-1">
-    タグで検索
-  </div>
-  <ul class="p-0" style="list-style: none;">
-    <% tags.each do |tag| %>
-    <li class="mt-2">
-      <%= link_to tag_search_path(tag), class:"text-secondary" do %>
-        <%= tag.name %>
-      <% end %>
-    </li>
+
+  <% tags.each do |tag| %>
+    <%= link_to tag_search_path(tag), class:"text-secondary" do %>
+      <i class="fa-solid fa-tag fa-sm"></i> <small><%= tag.name %></small>
     <% end %>
-  </ul>
-</div>
+  <% end %>

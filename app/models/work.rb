@@ -39,4 +39,10 @@ class Work < ApplicationRecord
     end
   end
   
+  def self.sort_trend
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
+    all.sort_by{|x|x.likes.where(created_at: from...to).count}.reverse
+  end
+  
 end

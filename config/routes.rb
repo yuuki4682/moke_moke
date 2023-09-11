@@ -18,8 +18,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "about" => "homes#about", as: :about
     resources :users, only: [:show, :edit, :update] do
-      resources :chats, only: [:show, :create, :destroy]
-      resources :relationships, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: :followings
       get "followers" => "relationships#followers", as: :followers
       resources :likes, only: [:index] #ユーザーがいいねした一覧
@@ -32,6 +31,7 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
     get "search" => "search#search", as: :search
     get "tags/:id" => "tags#search", as: :tag_search
+    resources :chats, only: [:show, :create, :destroy]
   end
   
   #管理者側ルート設定
