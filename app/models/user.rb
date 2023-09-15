@@ -13,6 +13,7 @@ class User < ApplicationRecord
   #DM機能
   has_many :chats, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
+  has_many :rooms, through: :user_rooms
  
  #与フォローの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -24,6 +25,10 @@ class User < ApplicationRecord
   #通知機能
   has_many :notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :reverse_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  
+  #通報機能
+  has_many :reports, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
+  has_many :reverse_reports, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
   
   has_one_attached :profile_image
   

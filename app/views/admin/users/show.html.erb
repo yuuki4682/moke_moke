@@ -1,2 +1,44 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h4><%= @user.name %>さんの詳細</h4>
+      <table class="table">
+       <tr>
+         <th>自己紹介</th>
+         <td>
+           <%= @user.introduction %>
+         </td>
+       </tr>
+      </table>
+    </div>
+    <div class="col-md-7 offset-1">
+       <% @user.works.each do |work| %>
+        <div class="card mb-3 w-100 shadow work-list">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <%= image_tag work.get_main_image(200, 200), class:"img-fluid" %>
+            </div>
+            <div class="col-md-5 mh-100">
+              <div class="card-body">
+                <h5 class="card-title mb-0"><%= work.title %></h5>
+                <p class="card-text"><%= work.caption %></p>
+                <p>
+                  <%= link_to '詳細', admin_work_path(work), class:"text-link mx-1" %>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card-body">
+                <p class="car-text"><small>
+                いいね：<%= work.likes.count %></br>
+                コメント数：<%= work.comments.count %></br>
+                </small></p>
+                <p class="card-text"><small class="text-muted">投稿日：<%= work.created_at.strftime('%Y/%m/%d') %></small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

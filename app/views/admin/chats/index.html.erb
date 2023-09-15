@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <h3><%= @sender.name %>と<%= @reciever.name %>のチャット</h3>
+      <div class="bg-secondary w-100 my-3 p-2">
+        <% @chats.each do |chat| %>
+          <div class="bg-light rounded-pill my-1 p-1">
+            <%= chat.message %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

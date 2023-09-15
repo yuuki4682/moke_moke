@@ -8,7 +8,7 @@ ja:
         follow: "フォロー"
     report:
       reason:
-        improper_post: "不適切な投稿"
+        improper_work_post: "不適切な投稿"
         improper_chat: "不適切なDM"
         improper_comment: "不適切なコメント"
   activerecord:

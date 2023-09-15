@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <table class="table">
+        <% @rooms.each do |room| %>
+          <tr>
+            <% room.users.each do |user| %>
+              <th class="p-0">
+                <% if user != @user %>
+                  <%= image_tag user.get_profile_image(40,40), class:"rounded-circle p-2" %>
+                  <%= user.name %>
+                  さんとのチャット
+              </th>
+              <td>
+                <%= link_to '詳細', admin_user_room_chats_path(user, room) %>
+              </td>
+                <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

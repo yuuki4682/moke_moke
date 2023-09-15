@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <table class="table table-border">
+        <tr>
+          <th>タイトル</th>
+          <td><%= @work.title %></td>
+        </tr>
+        <tr>
+          <th>紹介文</th>
+          <td><%= @work.caption %></td>
+        </tr>
+        <tr>
+          <th>タグ</th>
+          <td>
+            <% @work.tags.each do |tag| %>
+              <span><%= tag.name %></span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>表紙画像</th>
+          <td><%= image_tag @work.main_image, size:"100x100" %></td>
+        </tr>
+        <tr>
+          <th>画像</th>
+          <td>
+            <% @work.sub_images.each do |sub_image| %>
+              <%= image_tag sub_image, size:"100x100" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

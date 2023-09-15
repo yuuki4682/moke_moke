@@ -3,8 +3,8 @@ class Chat < ApplicationRecord
   belongs_to :user
   belongs_to :room
   has_many :user_rooms, through: :room
-  
   has_many :notifications, dependent: :destroy
+  has_many :reports
   
   validates :message, presence: true
   
@@ -21,6 +21,10 @@ class Chat < ApplicationRecord
       )
     @notification.save
     
+  end
+
+  def reported_by?(current_user)
+    reports.find_by(reporter_id: current_user.id).present?
   end
 
 end

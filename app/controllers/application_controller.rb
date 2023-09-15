@@ -7,9 +7,10 @@ class ApplicationController < ActionController::Base
     when User
       works_path
     when Admin
-      admin_users_path
+      admin_root_path
     end
   end
+  
 
   protected
   

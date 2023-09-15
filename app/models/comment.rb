@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :work
   
   has_many :notifications, dependent: :destroy
+  has_many :reports
   
   validates :message, presence: true
   
@@ -21,6 +22,10 @@ class Comment < ApplicationRecord
           @notification.save
         end
     end
+  end
+  
+  def reported_by?(current_user)
+    reports.find_by(reporter_id: current_user.id).present?
   end
   
 end

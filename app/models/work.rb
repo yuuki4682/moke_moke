@@ -9,6 +9,7 @@ class Work < ApplicationRecord
   has_many :tags, through: :work_tags
   
   has_many :notifications, dependent: :destroy
+  has_many :reports
   
   has_one_attached :main_image
   has_many_attached :sub_images
@@ -20,6 +21,7 @@ class Work < ApplicationRecord
   def get_main_image(width, height)
     main_image.variant(resize: "#{width}x#{height}^", gravity: "center", crop: "#{width}x#{height}+0+0").processed
   end
+  
   # userをいいねしているか
   def liked_by?(user)
     likes.exists?(user_id: user.id)
@@ -61,6 +63,10 @@ class Work < ApplicationRecord
           @notification.save
         end
     end
+  end
+  
+  def reported_by?(current_user)
+    reports.find_by(reporter_id: current_user.id).present?
   end
   
 end

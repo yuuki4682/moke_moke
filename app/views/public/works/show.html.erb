@@ -17,8 +17,13 @@
           <% end %>
         </div>
 
-        <div class="text-right" id="like_btn_<%= @work.id %>">
-          <%= render 'public/likes/btn', work: @work %>
+        <div class="d-flex ml-auto">
+          <div id="like_btn_<%= @work.id %>" class="mr-2">
+            <%= render 'public/likes/btn', work: @work %>
+          </div>
+          <div id="report_work_btn_<%= @work.id %>">
+            <%= render 'public/reports/work_btn', work: @work %>
+          </div>
         </div>
 
         <div class="card-title">

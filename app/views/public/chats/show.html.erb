@@ -22,8 +22,11 @@
               <div>
                 <%= image_tag chat.user.get_profile_image(30,30), class:"rounded-circle my-1 mr-1" %>
               </div>
-              <div class="card mr-auto my-1 p-1">
+              <div class="card my-1 p-1 mr-2">
                 <%= chat.message %>
+              </div>
+              <div id="report_chat_btn_<%= chat.id %>" class="mt-auto">
+                <%= render 'public/reports/chat_btn', chat: chat %>
               </div>
             </div>
           <% end %>

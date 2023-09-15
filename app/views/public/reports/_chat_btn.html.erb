@@ -1,0 +1,7 @@
+<% if chat.reported_by?(current_user) %>
+  <i class="fa-solid fa-flag text-warning"></i>
+<% else %>
+  <%= link_to chat_report_path(chat), method: :post, class:"text-warning", "data-confirm" => "本当に通報しますか？", remote: true do %>
+    <i class="fa-regular fa-flag"></i>
+  <% end %>
+<% end %>

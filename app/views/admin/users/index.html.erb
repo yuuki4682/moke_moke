@@ -1,2 +1,20 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <table class="table">
+        <% @users.each do |user| %>
+          <tr>
+            <td class="p-1">
+              <%= image_tag user.get_profile_image(40,40), class:"rounded-circle" %>
+            </td>
+            <td><%= user.name %></td>
+            <td>投稿数: <%= user.works.count %></td>
+            <td>被通報数: <%= user.reverse_reports.count %></td>
+            <td><%= link_to '詳細', admin_user_path(user) %></td>
+            <td><%= link_to 'チャット一覧', admin_user_rooms_path(user) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
