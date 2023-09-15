@@ -1,2 +1,39 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <table>
+      
+        <tr>
+          <th>プロフィール画像：</th>
+          <td><%= image_tag @user.get_profile_image(40,40), class:"rounded-circle" %></td>
+        </tr>
+        <tr>
+          <th>名前：</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介：</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+          <tr>
+            <th>アカウント停止ステータス：</th>
+            <td>
+              <span class="mr-3">
+                <%= f.radio_button :is_active, true %>
+                <%= f.label :is_avtive_true, '有効' %>
+              </span>
+              <span>
+                <%= f.radio_button :is_active, false %>
+                <%= f.label :is_avtive_false, '停止' %>
+              </span>
+            </td>
+          </tr>
+          <tr class="text-center">
+            <td><%= f.submit '更新する' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

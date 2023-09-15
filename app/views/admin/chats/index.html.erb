@@ -1,12 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
-      <h3><%= @sender.name %>と<%= @reciever.name %>のチャット</h3>
-      <div class="bg-secondary w-100 my-3 p-2">
+    <div class="col-md-6 mx-auto">
+      <h3>
+        <%= image_tag @sender.get_profile_image(30,30), class:"rounded-circle my-1 ml-1" %>
+        <%= @sender.name %>と
+        <%= image_tag @reciever.get_profile_image(30,30), class:"rounded-circle my-1 ml-1" %>
+        <%= @reciever.name %>のチャット
+      </h3>
+      <div class="bg-light w-100 my-3 p-2">
         <% @chats.each do |chat| %>
-          <div class="bg-light rounded-pill my-1 p-1">
-            <%= chat.message %>
-          </div>
+          <% if chat.user != @sender %>
+            <div class="d-flex">
+              <div class="card ml-auto my-1 p-1">
+                <%= chat.message %>
+              </div>
+              <div>
+                <%= image_tag chat.user.get_profile_image(30,30), class:"rounded-circle my-1 ml-1" %>
+              </div>
+            </div>
+          <% else %>
+            <div class="d-flex">
+              <div>
+                <%= image_tag chat.user.get_profile_image(30,30), class:"rounded-circle my-1 mr-1" %>
+              </div>
+              <div class="card my-1 p-1 mr-2">
+                <%= chat.message %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
