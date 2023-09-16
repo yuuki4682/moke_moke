@@ -1,4 +1,5 @@
 class Public::ReportsController < ApplicationController
+  before_action :authenticate_user!
   
   def report_work
     @work = Work.find(params[:work_id])

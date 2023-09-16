@@ -1,5 +1,7 @@
 class Public::ChatsController < ApplicationController
+  before_action :authenticate_user!
   before_action :reject_non_related, only: [:show]
+  before_action :is_matching_login_user, only: [:destroy]
   
   
   def show
@@ -43,6 +45,14 @@ class Public::ChatsController < ApplicationController
   def reject_non_related
     user = User.find(params[:id])
     unless current_user.following?(user) && user.following?(current_user)
+      redirect_to mypage_path
+    end
+  end
+  
+  def is_matching_login_user
+    chat = Chat.find(params[:id])
+    user = chat.user
+    unless user.id == current_user.id
       redirect_to mypage_path
     end
   end

@@ -1,12 +1,12 @@
 class Public::WorksController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def index
     if params[:trend]
       @works = Work.sort_trend
     else
-      @works = Work.all
+      @works = Work.all.order(created_at: :desc)
     end
     @tags = Tag.all
   end
