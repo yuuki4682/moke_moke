@@ -1,39 +1,36 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7 mx-auto">
-      <table>
-      
-        <tr>
-          <th>プロフィール画像：</th>
-          <td><%= image_tag @user.get_profile_image(40,40), class:"rounded-circle" %></td>
-        </tr>
-        <tr>
-          <th>名前：</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>自己紹介：</th>
-          <td><%= @user.introduction %></td>
-        </tr>
-        <%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+      <%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+        <table class="table table-borderless">
           <tr>
-            <th>アカウント停止ステータス：</th>
+            <th class="text-right pr-3">プロフィール画像：</th>
+            <td><%= image_tag @user.get_profile_image(40,40) %></td>
+          </tr>
+          <tr>
+            <th class="text-right pr-3">名前：</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th class="text-right pr-3">自己紹介：</th>
+            <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <th class="text-right pr-3">アカウント停止ステータス：</th>
             <td>
               <span class="mr-3">
                 <%= f.radio_button :is_active, true %>
-                <%= f.label :is_avtive_true, '有効' %>
+                <%= f.label :is_avtive_true, '有効', class:"m-0" %>
               </span>
               <span>
                 <%= f.radio_button :is_active, false %>
-                <%= f.label :is_avtive_false, '停止' %>
+                <%= f.label :is_avtive_false, '停止', class:"m-0" %>
               </span>
             </td>
           </tr>
-          <tr class="text-center">
-            <td><%= f.submit '更新する' %></td>
-          </tr>
-        <% end %>
-      </table>
+        </table>
+        <div class="text-center"><%= f.submit '更新する' %></div>
+      <% end %>
     </div>
   </div>
 </div>

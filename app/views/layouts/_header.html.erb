@@ -2,7 +2,13 @@
   <div class="container pb-2">
     
     <div>
-      <a class="navbar-brand" href="#">LOGO</a>
+      <% if admin_signed_in? %>
+        <%= link_to '管理者ページ', admin_root_path, class:"navbar-brand" %>
+      <% else %>
+        <%= link_to root_path, class:"navbar-brand" do %>
+          LOGO
+        <% end %>
+      <% end %>
     </div>
     <!--ナビゲーションバー-->
     <div>
@@ -55,10 +61,7 @@
       </div>
       <!--検索フォーム-->
       <div class="d-flex flex-row-reverse">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <%= render 'public/searches/form' %>
       </div>
       
     </div>

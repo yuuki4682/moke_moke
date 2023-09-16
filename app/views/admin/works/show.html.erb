@@ -3,6 +3,14 @@
     <div class="col-md-7 mx-auto">
       <table class="table table-border">
         <tr>
+          <th>投稿者</th>
+          <td>
+            <%= link_to admin_user_path(@work.user_id) do %>
+              <%= @work.user.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
           <th>タイトル</th>
           <td><%= @work.title %></td>
         </tr>
@@ -30,6 +38,22 @@
             <% end %>
           </td>
         </tr>
+      </table>
+    </div>
+    <div class="col-md-5">
+      <h4>コメント</h4>
+      <table class="table border">
+        <% @work.comments.each do |comment| %>
+          <tr>
+            <td>
+              <%= link_to admin_user_path(comment.user_id) do %>
+                <%= comment.user.name %>:
+              <% end %>
+              </td>
+            <td><%= comment.message %></td>
+            <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        <% end %>
       </table>
     </div>
   </div>

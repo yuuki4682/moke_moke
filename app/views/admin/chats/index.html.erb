@@ -2,10 +2,16 @@
   <div class="row">
     <div class="col-md-6 mx-auto">
       <h3>
-        <%= image_tag @sender.get_profile_image(30,30), class:"rounded-circle my-1 ml-1" %>
-        <%= @sender.name %>と
-        <%= image_tag @reciever.get_profile_image(30,30), class:"rounded-circle my-1 ml-1" %>
-        <%= @reciever.name %>のチャット
+        <%= link_to admin_user_path(@sender) do %>
+          <%= image_tag @sender.get_profile_image(30,30), class:"rounded-circle my-1 ml-1" %>
+          <%= @sender.name %>
+        <% end %>
+        と
+        <%= link_to admin_user_path(@reciever) do %>
+          <%= image_tag @reciever.get_profile_image(30,30), class:"rounded-circle my-1 ml-1" %>
+          <%= @reciever.name %>
+        <% end %>
+        のチャット
       </h3>
       <div class="bg-light w-100 my-3 p-2">
         <% @chats.each do |chat| %>

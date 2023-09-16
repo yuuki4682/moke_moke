@@ -1,2 +1,31 @@
-<h1>Admin::Reports#index</h1>
-<p>Find me in app/views/admin/reports/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h3>通報一覧</h3>
+      <table class="table table-border">
+        <tr>
+          <th>対象者</th>
+          <th>通報理由</th>
+          <th>通報者</th>
+          <th></th>
+        </tr>
+        <% @reports.each do |report| %>
+          <tr>
+            <td><%= report.reported.name %></td>
+            <td><%= report.reason_i18n %></td>
+            <td><%= report.reporter.name %></td>
+            <td>
+              <% if report.reason == "improper_work_post" %>
+                <%= link_to '確認する＞', admin_work_path(report.work_id) %>
+              <% elsif report.reason == "improper_chat" %>
+                <%= link_to '確認する＞', admin_user_room_chats_path(report.reporter, report.chat.room_id) %>
+              <% elsif report.reason == "improper_comment" %>
+                <%= link_to '確認する＞', admin_work_path(report.comment.work_id) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      
+      <div>
+        <h4>"<%= @word %>"を含むユーザー</h4>
+        <ul class="card p-0 m-0">
+          <% if @users.count == 0 %>
+            <p class="p-2 my-3">"<%= @word %>"を含むユーザーはいません</p>
+          <% end %>
+          <% @users.each do |user| %>
+            <li style="list-style: none;", class="p-2 border-bottom">
+              <%= link_to user_path(user), class:"text-dark" do %>
+                <%= image_tag user.get_profile_image(40,40), class:"rounded-circle" %>
+                <%= user.name %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      
+      <div class="mt-4">
+        <h4>"<%= @word %>"を含むタグ</h4>
+        <ul class="card p-0 m-0">
+          <% if @tags.count == 0 %>
+            <p class="p-2 my-3">"<%= @word %>"を含むタグはいません</p>
+          <% end %>
+          <% @tags.each do |tag| %>
+            <%= link_to tag_search_path(tag), class:"text-dark" do %>
+              <li style="list-style: none;", class="p-2 border-bottom">
+                <i class="fa-solid fa-tag fa-sm"></i> <%= tag.name %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+      <h2>"<%= @word %>"を含む作品</h2>
+      <% if @works.count == 0 %>
+        <h4>"<%= @word %>"を含む作品はありません。</h4>
+      <% end %>
+      <%= render 'public/works/index', works: @works %>
+    </div>
+  </div>
+</div>

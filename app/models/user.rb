@@ -79,4 +79,8 @@ class User < ApplicationRecord
     notifications.find_by(checked: false).present?
   end
   
+  def self.search(word)
+    self.where("name LIKE?", "%#{word}%")
+  end 
+  
 end

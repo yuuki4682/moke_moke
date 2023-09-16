@@ -69,4 +69,8 @@ class Work < ApplicationRecord
     reports.find_by(reporter_id: current_user.id).present?
   end
   
+  def self.search(word)
+    self.where("title LIKE?", "%#{word}%")
+  end
+  
 end

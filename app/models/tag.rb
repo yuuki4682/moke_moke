@@ -5,4 +5,8 @@ class Tag < ApplicationRecord
   
   validates :name, presence: true, length: {maximum:50}
   
+  def self.search(word)
+    self.where("name LIKE?", "%#{word}%")
+  end 
+  
 end

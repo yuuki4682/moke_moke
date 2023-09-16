@@ -7,7 +7,14 @@
             <td class="p-1">
               <%= image_tag user.get_profile_image(40,40), class:"rounded-circle" %>
             </td>
-            <td><%= user.name %></td>
+            <td>
+              <%= user.name %>
+              <div class="text-danger">
+                <% if user.is_active == false %>
+                  アカウント停止中
+                <% end %>
+              </div>
+            </td>
             <td>投稿数: <%= user.works.count %></td>
             <td>被通報数: <%= user.reverse_reports.count %></td>
             <td><%= link_to '詳細', admin_user_path(user) %></td>

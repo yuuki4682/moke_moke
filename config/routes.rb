@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       post "report" => "reports#report_work", as: :report
     end
     resources :notifications, only: [:index]
-    get "search" => "search#search", as: :search
+    get "search" => "searches#search", as: :search
     get "tags/:id" => "tags#search", as: :tag_search
     resources :chats, only: [:show, :create, :destroy] do
       post "report" => "reports#report_chat", as: :report
