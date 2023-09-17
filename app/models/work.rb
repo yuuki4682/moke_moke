@@ -15,7 +15,10 @@ class Work < ApplicationRecord
   has_many_attached :sub_images
   
   validates :title, presence: true
-  validates :caption, presence: true
+  validates :caption, presence: true, length: { maximum: 200 } 
+  validates :main_image, presence: true
+  validates :sub_images, presence: true
+  
   
   # 表紙画像のサイズ調整
   def get_main_image(width, height)
@@ -34,7 +37,7 @@ class Work < ApplicationRecord
     new_tags = tags - current_tags
     #既存のタグを消す
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name :old_name)
+      self.tags.delete Tag.find_by(name: old_name)
     end
     #新しいタグを消す
     new_tags.each do |new_name|

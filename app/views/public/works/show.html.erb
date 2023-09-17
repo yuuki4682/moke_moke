@@ -1,21 +1,9 @@
 <div class="container">
   <div class="row">
     
-    <div class="col-md-3">
-      <%= render 'public/users/info', user: current_user %>
-      <%= render 'public/tags/index', tags: @tags %>
-    </div>
-    
-    <div class="col-md-7 offset-md-1">
-      <%= render 'slide', work: @work %>
-      <div class="card my-2 p-3">
-
-        <div class="card-text">
-          <%= link_to user_path(@work.user), class:"text-dark" do %>
-            <%= image_tag @work.user.get_profile_image(40,40), class:"rounded-circle mr-2" %>
-            <strong><%= @work.user.name %></strong>
-          <% end %>
-        </div>
+    <div class="col-md-7">
+      <%= render 'public/works/slide', work: @work %>
+      <div class="card my-2 p-2">
 
         <div class="d-flex ml-auto">
           <div id="like_btn_<%= @work.id %>" class="mr-2">
@@ -27,19 +15,33 @@
         </div>
 
         <div class="card-title">
-          <h5><%= @work.title %></h5>
+          <h5><strong><%= @work.title %></strong></h5>
           <span class="font-weight-light">
             <%= render 'public/tags/list', tags: @work.tags %>
           </span>
         </div>
 
         <div class="card-text">
-          <%= simple_format(@work.caption, class:"m-0") %>
+          投稿者：
+          <%= link_to user_path(@work.user), class:"text-dark" do %>
+            <%= image_tag @work.user.get_profile_image(40,40), class:"rounded-circle mr-2" %>
+            <strong><%= @work.user.name %></strong>
+          <% end %>
         </div>
 
       </div>
+    </div>
+    
+    <div class="col-md-5">
+      <div class="card p-3 mb-4">
+        <h4 class="card-title">紹介文</h4>
+        <div class="card-text p-2">
+          <%= simple_format(@work.caption, class:"m-0") %>
+        </div>
+      </div>
 
       <div>
+        <%= render 'layouts/error_message', obj: @comment %>
         <%= render 'public/comments/form', work: @work %>
       </div>
       <div>

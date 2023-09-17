@@ -25,6 +25,7 @@ class Public::WorksController < ApplicationController
       redirect_to work_path(@work)
     else
       render :new
+      @tag_list = @work.tags.pluck(:name).join(',')
     end
   end
 
@@ -41,7 +42,7 @@ class Public::WorksController < ApplicationController
   
   def update
     @work = Work.find(params[:id])
-    tag_list = params[:work][:name].split(',')
+    @tag_list = params[:work][:name].split(',')
     
     #サブ画像を個別で削除
     if params[:work][:sub_image_ids]
@@ -52,7 +53,7 @@ class Public::WorksController < ApplicationController
     end
     
     if @work.update(work_params)
-      @work.save_tags(tag_list)
+      @work.save_tags(@tag_list)
       redirect_to mypage_path
     else
       render :edit

@@ -3,7 +3,7 @@ class Public::LikesController < ApplicationController
   
   def index
     @user = User.find(params[:user_id])
-    @works = @user.like_works.all
+    @works = @user.like_works.order(created_at: :desc)
   end
   
   def create

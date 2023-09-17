@@ -19,7 +19,7 @@ class Public::ChatsController < ApplicationController
       @room = user_rooms.room
     end
     
-    @chats = @room.chats
+    @chats = @room.chats.order(created_at: :desc)
     @chat = Chat.new
   end
   

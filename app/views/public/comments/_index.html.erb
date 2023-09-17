@@ -3,20 +3,22 @@
     <div class="text-secondary">コメントはありません。</div>
   <% end %>
   <% comments.each do |comment| %>
-    <div class="border-bottom mt-2">
-      <div class="d-flex align-items-center">
-        <%= image_tag comment.user.get_profile_image(40,40), class:"rounded-circle mr-1" %> 
-        |<%= comment.user.name %>
-        <!--work投稿者とcomment投稿者のみ削除可能-->
-        <% if comment.user == current_user %>
-          <%= link_to '削除', work_comments_path(comment.work, comment), method: :delete, class:"btn btn-outline-secondary btn-sm ml-auto" %>
-        <% else %>
-          <div id="report_comment_btn_<%= comment.id %>" class="ml-auto">
-            <%= render 'public/reports/comment_btn', comment: comment %>
-          </div>
-        <% end %>
+    <% if comment.user.is_active == true %>
+      <div class="border-bottom mt-2">
+        <div class="d-flex align-items-center">
+          <%= image_tag comment.user.get_profile_image(40,40), class:"rounded-circle mr-1" %> 
+          |<%= comment.user.name %>
+          <!--work投稿者とcomment投稿者のみ削除可能-->
+          <% if comment.user == current_user %>
+            <%= link_to '削除', work_comment_path(comment.work, comment), method: :delete, class:"btn btn-outline-secondary btn-sm ml-auto",  "data-confirm" => "本当に削除しますか？" %>
+          <% else %>
+            <div id="report_comment_btn_<%= comment.id %>" class="ml-auto">
+              <%= render 'public/reports/comment_btn', comment: comment %>
+            </div>
+          <% end %>
+        </div>
+        <%= comment.message %>
       </div>
-      <%= comment.message %>
-    </div>
+    <% end %>
   <% end %>
 </div>

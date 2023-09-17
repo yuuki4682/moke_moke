@@ -6,7 +6,7 @@ class Chat < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :reports
   
-  validates :message, presence: true
+  validates :message, presence: true, length: { maximum: 50 } 
   
   def create_notification_chat
     #オブジェクトに紐づいる2つのuser_roomsからチャットの送信者ではないほうを取得

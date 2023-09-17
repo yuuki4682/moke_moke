@@ -12,6 +12,17 @@ ja:
         improper_chat: "不適切なDM"
         improper_comment: "不適切なコメント"
   activerecord:
+    attributes:
+      user:
+        name: "名前"
+        introduction: "自己紹介"
+      work:
+        title: "タイトル"
+        caption: "説明文"
+        main_image: "表紙画像"
+        sub_images: "画像（複数枚可）"
+      comment:
+        message: "コメント"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

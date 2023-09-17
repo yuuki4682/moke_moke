@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :reports
   
-  validates :message, presence: true
+  validates :message, presence: true, length: { maximum: 30 } 
   
   def create_notification_comment
     #１時間以内の同一ユーザーから同一投稿へのコメントは通知しない

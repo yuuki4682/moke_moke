@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-6 m-auto shadow rounded p-0 border">
       <h2 class="text-center p-2 bg-secondary text-light rounded-top">投稿する</h2>
+      <%= render 'layouts/error_message', obj: @work %>
       <div class="p-4">
         <%= render 'form', work: @work %>
       </div>
