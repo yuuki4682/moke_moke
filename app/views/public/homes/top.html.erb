@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 offset-md-2 py-5">
+    <div class="col-md-4 offset-md-2 col-sm-10 py-5">
       <div class="top_img"></div>
     </div>
-    <div class="col-md-4 py-5">
-      <div style="height:500px;" class="px-3">
-        <div class="border-bottom h-50 d-flex align-items-center">
+    <div class="col-md-4 col-sm-10 py-md-5">
+      <div class="px-md-3 mt-md-5">
+        <div class="border-bottom pb-md-5 pb-3">
+        <p>ユーザー登録済みの方はこちら</p>
           <div class="w-100">
-            <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:"btn btn-secondary w-100 mb-3" %>
             <%= link_to "ログイン", new_user_session_path, class:"btn btn-info w-100" %>
         　</div>
         </div>
         <div>
           <p>初めての方はこちら</p>  
-          <div class="pt-3">
+          <div class="pt-md-3">
             <%= link_to "新規登録", new_user_registration_path, class:"btn btn-success w-100" %>
           </div>
           <div class="text-right mt-1">

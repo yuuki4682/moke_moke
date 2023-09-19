@@ -8,7 +8,7 @@
     </div>
     <div class="w-100 p-1">
       <div class="text-right">
-        <% if user == current_user %>
+        <% if user == current_user && user.not_guest %>
           <%= link_to edit_user_path(user), class:"text-secondary" do %>
             <i class="fa-solid fa-gear"></i>
           <% end %>

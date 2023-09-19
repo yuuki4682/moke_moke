@@ -36,13 +36,18 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   
   GUEST_USER_EMAIL = "guest@example.com"
-  
+  #ゲストユーザーログイン
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
   end
+  #ゲストユーザーではない=>TRUE
+  def not_guest
+    email != GUEST_USER_EMAIL
+  end
+  
   #デフォルト画像の設定
   def upload_default_profile_image
     file_path = Rails.root.join("app/assets/images/no_image.jpg")
