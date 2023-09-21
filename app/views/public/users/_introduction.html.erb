@@ -1,0 +1,10 @@
+<% if user.introduction.present? %>
+  <div class="card my-3 p-3 shadow">
+    <div class="card-title">
+      <h5><strong>自己紹介</strong></h5>
+    </div>
+    <div class="card-text">
+      <%= simple_format(user.introduction) %>
+    </div>
+  </div>
+<% end %>

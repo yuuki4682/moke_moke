@@ -1,37 +1,33 @@
 <% works.each do |work| %>
   <% if work.user.is_active == true %>
-    <div class="mb-2">
-      <%= link_to work_path(work) do %>
-        <div class="card shadow mb-1">
-          <%= image_tag work.main_image, class:"card-img img-fluid" %>
+    <div class="card mb-3 shadow">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <%= image_tag work.get_main_image(400, 400), class:"img-fluid rounded" %>
         </div>
-      <% end %>
-      <div class="d-md-flex flex-row-reverse d-none">
-        <div class="card w-50">
-          <div class="row no-gutters">
-            
-            <div class="col-md-2 p-2">
-              <%= image_tag work.user.get_profile_image(50,50), class:"rounded-circle" %>
-            </div>
-            <div class="col-md-8 d-flex flex-column p-2">
-              <%= work.title %>
-              <span class="font-weight-light">
-                <%= render 'public/tags/list', tags: work.tags.first(3) %>
-                <% if work.tags.count >= 3 %>
-                  ...
-                <% end %>
-              </span>
-              <div class="d-flex">
-                <%= link_to user_path(work.user), class:"text-dark" do %>
-                  <i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong>
-                <% end %>
-                <div class="follow_btn_<%= work.user.id %>">
-                  <%= render 'public/relationships/btn', user: work.user %>
-                </div>
+        <div class="col-md-5 mh-100">
+          <div class="card-body p-2 p-md-4">
+            <h5 class="card-title mb-0"><%= work.title %></h5>
+            <span class="font-weight-light">
+              <%= render 'public/tags/list', tags: work.tags.first(3) %>
+              <% if work.tags.count >= 3 %>
+                ...
+              <% end %>
+            </span>
+            <p class="card-text"><%= work.caption %></p>
+            <div class="d-flex text-truncate">
+              <%= link_to user_path(work.user), class:"text-dark" do %>
+                <i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong>
+              <% end %>
+              <div class="follow_btn_<%= work.user.id %>">
+                <%= render 'public/relationships/btn', user: work.user %>
               </div>
             </div>
-            
-            <div class="col-md-2 d-flex">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-body p-2 p-md-4">
+            <div class="d-flex">
               <div id="like_btn_<%= work.id %>" class="mr-2">
                 <%= render 'public/likes/btn', work: work %>
               </div>
@@ -39,7 +35,9 @@
                 <%= render 'public/reports/work_btn', work: work %>
               </div>
             </div>
-  
+          </div>
+          <div class="p-2 p-md-4">
+            <p class="card-text"><small class="text-muted">投稿日：<%= work.created_at.strftime('%Y/%m/%d') %></small></p>
           </div>
         </div>
       </div>

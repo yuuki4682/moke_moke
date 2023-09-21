@@ -4,6 +4,10 @@
     <div>
       <% if admin_signed_in? %>
         <%= link_to '管理者ページ', admin_root_path, class:"navbar-brand" %>
+      <% elsif user_signed_in? %>
+        <%= link_to works_path, class:"navbar-brand" do %>
+          LOGO
+        <% end %>
       <% else %>
         <%= link_to root_path, class:"navbar-brand" do %>
           LOGO
@@ -25,7 +29,7 @@
             <%= link_to "投稿する", new_work_path, class:"nav-link" %>
           </li>
           <li class="nav-item text-right">
-            <%= link_to "投稿作品", works_path, class:"nav-link" %>
+            <%= link_to "投稿一覧", works_path, class:"nav-link" %>
           </li>
           <li class="nav-item text-right">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link" %>
