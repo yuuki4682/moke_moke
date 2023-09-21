@@ -7,22 +7,22 @@
     <div class="col-md-8 offset-md-1">
       <h3>投稿作品</h3>
       <% @works.each do |work| %>
-        <div class="card mb-3 w-100 shadow work-list">
+        <div class="card mb-3 shadow">
           <div class="row no-gutters">
             <div class="col-md-4">
-              <%= image_tag work.get_main_image(200, 200), class:"img-fluid" %>
+              <%= image_tag work.get_main_image(400, 400), class:"img-fluid rounded" %>
             </div>
             <div class="col-md-5 mh-100">
-              <div class="card-body">
+              <div class="card-body p-2 p-md-4">
                 <h5 class="card-title mb-0"><%= work.title %></h5>
                 <span class="font-weight-light">
-                  <%= render 'public/tags/list', tags: work.tags.first(4) %>
-                  <% if work.tags.count >= 5 %>
+                  <%= render 'public/tags/list', tags: work.tags.first(3) %>
+                  <% if work.tags.count >= 3 %>
                     ...
                   <% end %>
                 </span>
                 <p class="card-text"><%= work.caption %></p>
-                <p>
+                <p class="m-0">
                   <%= link_to '詳細', work_path(work), class:"text-link mx-1" %>|
                   <%= link_to '編集', edit_work_path(work), class:"text-link mx-1" %>|
                   <%= link_to '削除', work_path(work), method: :delete, class:"text-danger mx-1" %>
@@ -30,10 +30,11 @@
               </div>
             </div>
             <div class="col-md-3">
-              <div class="card-body">
+              <div class="card-body p-2 p-md-4">
                 <p class="car-text"><small>
                 いいね：<%= work.likes.count %></br>
                 コメント数：<%= work.comments.count %></br>
+                PV数：<%= work.view_counts.count %>
                 </small></p>
                 <p class="card-text"><small class="text-muted">投稿日：<%= work.created_at.strftime('%Y/%m/%d') %></small></p>
               </div>

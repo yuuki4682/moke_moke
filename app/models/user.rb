@@ -9,6 +9,7 @@ class User < ApplicationRecord
   
   has_many :works, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :view_counts
   
   has_many :likes, dependent: :destroy
   has_many :like_works, through: :likes, source: :work

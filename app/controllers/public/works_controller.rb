@@ -3,12 +3,16 @@ class Public::WorksController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def index
-    if params[:trend]
-      @works = Work.sort_trend
+    if params[:like]
+      works = Work.sort("like")
+      @works = Kaminari.paginate_array(works).page(params[:page]).per(5)
+    elsif params[:pv]
+      works = Work.sort("pv")
+      @works = Kaminari.paginate_array(works).page(params[:page]).per(5)
     else
-      @works = Work.all.order(created_at: :desc)
+      @works = Work.all.order(created_at: :desc).page(params[:page]).per(5)
     end
-    @tags = Tag.all
+    @tags = Tag.top(5)
   end
 
   def new
@@ -33,6 +37,9 @@ class Public::WorksController < ApplicationController
     @work = Work.find(params[:id])
     @comment = Comment.new
     @tags = Tag.all
+    
+    #閲覧数を加算
+    @work.add_view_count(current_user)
   end
 
   def edit

@@ -5,12 +5,13 @@ class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     @works = current_user.works
-    @tags = Tag.all
+    @tags = Tag.top(5)
   end
 
   def show
     @user = User.find(params[:id])
-    @tags = Tag.all
+    @tags = Tag.top(5)
+    @works = @user.works.all.page(params[:page]).per(5)
   end
 
   def edit

@@ -3,7 +3,8 @@ class Public::LikesController < ApplicationController
   
   def index
     @user = User.find(params[:user_id])
-    @works = @user.like_works.order(created_at: :desc)
+    works = @user.like_works.order(created_at: :desc)
+    @works = Kaminari.paginate_array(works).page(params[:page]).per(5)
   end
   
   def create

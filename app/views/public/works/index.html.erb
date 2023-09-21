@@ -8,7 +8,8 @@
       <h2>作品一覧</h2>
       <span>
         <%= link_to '新着順', works_path, class:"text-secondary" %> | 
-        <%= link_to '最近のいいね数順', works_path(trend: true), class:"text-secondary" %>
+        <%= link_to '最近のいいね数順', works_path(like: true), class:"text-secondary" %> | 
+        <%= link_to 'PV数順', works_path(pv: true), class:"text-secondary" %>
       </span>
       <%= render 'index', works: @works %>
     </div>

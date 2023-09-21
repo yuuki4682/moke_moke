@@ -4,6 +4,7 @@ class Work < ApplicationRecord
   
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
   
   has_many :work_tags, dependent: :destroy
   has_many :tags, through: :work_tags
@@ -47,10 +48,14 @@ class Work < ApplicationRecord
   end
   
   #一週間にいいねが多い順に並び替え
-  def self.sort_trend
+  def self.sort(option)
     to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
-    all.sort_by{|x|x.likes.where(created_at: from...to).count}.reverse
+    if option == "like"
+      all.sort_by{|work|work.likes.where(created_at: from...to).count}.reverse
+    elsif option == "pv"
+      all.sort_by{|work|work.view_counts.where(created_at: from...to).count}.reverse
+    end
   end
   
   def create_notification_like(current_user)
@@ -74,6 +79,12 @@ class Work < ApplicationRecord
   
   def self.search(word)
     self.where("title LIKE?", "%#{word}%")
+  end
+  
+  def add_view_count(current_user)
+    unless view_counts.where(user_id: current_user.id, work_id: id).present?
+      view_counts.create(user_id: current_user.id)
+    end
   end
   
 end

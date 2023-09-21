@@ -4,9 +4,9 @@
       <%= render 'public/users/info', user: @user %>
       <%= render 'public/tags/index', tags: @tags %>
     </div>
-    <div class="col-md-8 offset-md-1">
-      <h2><%= @user.name %>さんをフォローしているユーザー</h2>
-      <div class="w-75">
+    <div class="col-md-8 offset-md-1 col-12">
+      <h2 class="mb-3"><%= @user.name %>さんをフォローしているユーザー</h2>
+      <div>
         <%= render 'public/users/index', users: @user.followers %>
       </div>
     </div>

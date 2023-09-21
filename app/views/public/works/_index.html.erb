@@ -16,8 +16,8 @@
             <div class="col-md-8 d-flex flex-column p-2">
               <%= work.title %>
               <span class="font-weight-light">
-                <%= render 'public/tags/list', tags: work.tags.first(4) %>
-                <% if work.tags.count >= 5 %>
+                <%= render 'public/tags/list', tags: work.tags.first(3) %>
+                <% if work.tags.count >= 3 %>
                   ...
                 <% end %>
               </span>
@@ -46,3 +46,4 @@
     </div>
   <% end %>
 <% end %>
+<%= paginate works %>
