@@ -3,7 +3,9 @@
     <div class="card mb-3 shadow">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <%= image_tag work.get_main_image(400, 400), class:"img-fluid rounded" %>
+          <%= link_to work_path(work) do %>
+            <%= image_tag work.get_main_image(400, 400), class:"img-fluid rounded" %>
+          <% end %>
         </div>
         <div class="col-md-5 mh-100">
           <div class="card-body p-2 p-md-4">
