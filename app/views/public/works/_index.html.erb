@@ -17,7 +17,7 @@
               <% end %>
             </span>
             <p class="card-text"><%= work.caption %></p>
-            <div class="d-flex text-truncate">
+            <div class="d-flex">
               <%= link_to user_path(work.user), class:"text-dark" do %>
                 <i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong>
               <% end %>

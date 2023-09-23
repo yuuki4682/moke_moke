@@ -15,7 +15,7 @@ class Work < ApplicationRecord
   has_one_attached :main_image
   has_many_attached :sub_images
   
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 20 }
   validates :caption, presence: true, length: { maximum: 200 } 
   validates :main_image, presence: true
   validates :sub_images, presence: true

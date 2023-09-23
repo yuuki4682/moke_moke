@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-describe "ユーザーテスト" do
+describe "ログイン前のテスト" do
   
   describe "新規ユーザー登録のテスト" do
     before do
       visit new_user_registration_path
     end
     
-    context "フォームの確認" do
+    context "新規登録フォームの確認" do
       it "nameフォームが表示される" do
         expect(page).to have_field "user[name]"
       end
@@ -23,7 +23,6 @@ describe "ユーザーテスト" do
         expect(page).to have_field "user[password_confirmation]"
       end
     end
-  
     context "登録処理のテスト" do
       before do
         fill_in "user[name]", with: Faker::Lorem.characters(number: 10)
@@ -35,7 +34,17 @@ describe "ユーザーテスト" do
         expect { click_button "登録" }.to change(User.all, :count).by(1)
       end
     end
-  
   end
   
+  describe "ユーザー情報編集のテスト" do
+    before do
+      visit edit_users_path
+    end
+    
+    context "編集ページの表示確認" do
+      it "nameフォームが表示される" do
+        expect(page).to have_field "user[name]"
+      end
+    end
+  end
 end

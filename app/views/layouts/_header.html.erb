@@ -6,11 +6,11 @@
         <%= link_to '管理者ページ', admin_root_path, class:"navbar-brand" %>
       <% elsif user_signed_in? %>
         <%= link_to works_path, class:"navbar-brand" do %>
-          LOGO
+          <%= image_tag 'navbar_logo.png', size:"118x80" %>
         <% end %>
       <% else %>
         <%= link_to root_path, class:"navbar-brand" do %>
-          LOGO
+          <%= image_tag 'navbar_logo.png', size:"118x80" %>
         <% end %>
       <% end %>
     </div>
