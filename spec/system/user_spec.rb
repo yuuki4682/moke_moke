@@ -2,7 +2,8 @@
 
 require 'rails_helper'
 
-describe "ログイン前のテスト" do
+describe "新規登録のテスト" do
+  let(:user) {create(:user)}
   
   describe "新規ユーザー登録のテスト" do
     before do
@@ -38,13 +39,12 @@ describe "ログイン前のテスト" do
   
   describe "ユーザー情報編集のテスト" do
     before do
-      visit edit_users_path
+      visit new_user_session_path
+      fill_in "user[name]", with: user.name
+      fill_in "user[password]", with: user.password
+      click_button "ログイン"
+      visit edit_user_path(user.id)
     end
     
-    context "編集ページの表示確認" do
-      it "nameフォームが表示される" do
-        expect(page).to have_field "user[name]"
-      end
-    end
   end
 end

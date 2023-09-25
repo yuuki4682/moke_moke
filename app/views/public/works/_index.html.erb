@@ -7,7 +7,7 @@
             <%= image_tag work.get_main_image(400, 400), class:"img-fluid rounded" %>
           <% end %>
         </div>
-        <div class="col-md-5 mh-100">
+        <div class="col-md-6 mh-100">
           <div class="card-body p-2 p-md-4">
             <h5 class="card-title mb-0"><%= work.title %></h5>
             <span class="font-weight-light">
@@ -16,18 +16,17 @@
                 ...
               <% end %>
             </span>
-            <p class="card-text"><%= work.caption %></p>
-            <div class="d-flex">
-              <%= link_to user_path(work.user), class:"text-dark" do %>
-                <i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong>
-              <% end %>
-              <div class="follow_btn_<%= work.user.id %>">
-                <%= render 'public/relationships/btn', user: work.user %>
-              </div>
+          </div>
+          <div class="d-flex p-2">
+            <%= link_to user_path(work.user), class:"text-dark" do %>
+              <i class="fa-solid fa-user"></i> | <strong><%= work.user.name %></strong>
+            <% end %>
+            <div class="follow_btn_<%= work.user.id %>">
+              <%= render 'public/relationships/btn', user: work.user %>
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <div class="card-body p-2 p-md-4">
             <div class="d-flex">
               <div id="like_btn_<%= work.id %>" class="mr-2">
