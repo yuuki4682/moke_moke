@@ -1,14 +1,23 @@
 <div class="card p-0 m-0 my-3 shadow text-center">
-  <div class="border-bottom my-1 p-2">
-    <h5 class="m-0">人気タグ</h5>
+  <div class="my-1 p-2">
+    <h5 class="m-0">
+      人気タグ
+      <button class="btn btn-link d-md-none text-right text-secondary" type="button" data-toggle="collapse" data-target="#tag-list" aria-expanded="false">
+        <i class="fa-solid fa-caret-down"></i>
+      </button>
+    </h5>
   </div>
-  <ul class="p-0" style="list-style: none;">
-    <% tags.each do |tag| %>
-    <li class="mt-2">
-      <%= link_to tag_search_path(tag), class:"text-secondary" do %>
-        <i class="fa-solid fa-tag fa-sm"></i> <%= tag.name %>
+  
+ 
+  <div class="collapse d-md-block" id="tag-list">
+    <ul class="border-top p-0" style="list-style: none;">
+      <% tags.each do |tag| %>
+      <li class="mt-2">
+        <%= link_to tag_search_path(tag), class:"text-secondary" do %>
+          <i class="fa-solid fa-tag fa-sm"></i> <%= tag.name %>
+        <% end %>
+      </li>
       <% end %>
-    </li>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>
