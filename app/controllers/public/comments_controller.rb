@@ -25,8 +25,7 @@ class Public::CommentsController < ApplicationController
   end
   
   def destroy
-    work = Work.find(params[:work_id])
-    comment = current_user.comments.find_by(work_id: work)
+    comment = current_user.comments.find(params[:id])
     comment.destroy
     redirect_to request.referer
   end
