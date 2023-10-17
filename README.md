@@ -29,6 +29,8 @@
 
 ## 設計書
 
+WBSシート (https://docs.google.com/spreadsheets/d/1Tcl6ZErkLN-S69GEemggnCTPnpkFtjIzEITjy4OW4XM/edit#gid=1773513600)
+
 実装機能リスト（https://docs.google.com/spreadsheets/d/1tmNLx9b5NaV7PwOjyraw-KsbYFpliLw8NnSFRrkC0JM/edit#gid=1898975908）
 
 ER図（https://app.diagrams.net/#G1MISVPAQewIKBwK9KzGWVKRCa2i2GjKAI）
@@ -37,6 +39,8 @@ ER図（https://app.diagrams.net/#G1MISVPAQewIKBwK9KzGWVKRCa2i2GjKAI）
 
 アプリケーション詳細設計書（https://docs.google.com/spreadsheets/d/1JK-BFYnCxwKTS8VJRXgG8Bpuci-FQL14oGiA_ba9Rp4/edit#gid=549108681）
 
+テスト仕様書 (https://docs.google.com/spreadsheets/d/1OQ4RzaOxEkB5Vibh7_nz3cJ-v57FCdu_/edit#gid=96526566)
+
 ## 開発環境
 
 - OS：Linux(CentOS)
@@ -44,5 +48,3 @@ ER図（https://app.diagrams.net/#G1MISVPAQewIKBwK9KzGWVKRCa2i2GjKAI）
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
