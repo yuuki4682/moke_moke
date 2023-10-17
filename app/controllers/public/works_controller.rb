@@ -82,7 +82,7 @@ class Public::WorksController < ApplicationController
   def is_matching_login_user
     work = Work.find(params[:id])
     user = work.user
-    unless user.id == current_user.id
+    unless user == current_user
       redirect_to work_path(work)
     end
   end
