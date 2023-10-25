@@ -20,11 +20,11 @@
             <td>
               <span class="mr-3">
                 <%= f.radio_button :is_active, true %>
-                <%= f.label :is_avtive_true, '有効', class:"m-0" %>
+                <%= f.label :is_active, '有効', value: true, class:"m-0" %>
               </span>
               <span>
                 <%= f.radio_button :is_active, false %>
-                <%= f.label :is_avtive_false, '停止', class:"m-0" %>
+                <%= f.label :is_active, '停止', value: false, class:"m-0" %>
               </span>
             </td>
           </tr>

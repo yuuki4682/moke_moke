@@ -1,17 +1,17 @@
 <%= form_with model: work do |f| %>
 
   <div class="form-group">
-    <%= f.label :title, "タイトル" %>
+    <%= f.label :title, "タイトル(20文字以内)" %>
     <%= f.text_field :title, class:"form-control" %>
   </div>
   
   <div class="form_group">
     <%= f.label :name, "タグ(,で区切ると複数タグ登録できます)" %>
-    <%= f. text_field :name, value: @tag_list, class:"form-control", placeholder: "タグ１,タグ2" %>
+    <%= f. text_field :name, value: @tag_list, class:"form-control", placeholder: "例）タグ１,タグ2" %>
   </div>
   
   <div class="form-group">
-    <%= f.label :caption, "紹介文" %>
+    <%= f.label :caption, "紹介文(200文字以内)" %>
     <%= f.text_area :caption, class:"form-control", rows:5 %>
   </div>
   

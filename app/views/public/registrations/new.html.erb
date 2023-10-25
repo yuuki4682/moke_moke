@@ -3,8 +3,11 @@
     <div class="col-md-6 col-10 m-auto shadow rounded p-0">
       <h2 class="bg-success py-3 text-light text-center">新規ユーザー登録</h2>
       <p class="my-3 text-center">名前、メールアドレスとパスワードを入力してください</p>
+      
       <div class="px-4">
         <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+
+          <%= render 'layouts/error_message', obj: @user %>
 
           <div class="input-group py-3">
             <div class="input-group-prepend">

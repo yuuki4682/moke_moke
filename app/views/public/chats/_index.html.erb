@@ -1,7 +1,8 @@
 <% chats.each do |chat| %>
   <% if chat.user == current_user %>
     <div class="d-flex">
-      <div class="card ml-auto my-1 p-1">
+      <small class="text-muted mt-auto ml-auto"><%= chat.created_at.strftime('%Y/%m/%d') %></small>
+      <div class="card ml-2 my-1 p-1">
         <%= chat.message %>
       </div>
       <div>
@@ -16,6 +17,7 @@
       <div class="card my-1 p-1 mr-2">
         <%= chat.message %>
       </div>
+      <small class="text-muted mt-auto mr-2"><%= chat.created_at.strftime('%Y/%m/%d') %></small>
       <div id="report_chat_btn_<%= chat.id %>" class="mt-auto">
         <%= render 'public/reports/chat_btn', chat: chat %>
       </div>
