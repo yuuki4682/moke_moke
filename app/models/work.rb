@@ -10,7 +10,7 @@ class Work < ApplicationRecord
   has_many :tags, through: :work_tags
   
   has_many :notifications, dependent: :destroy
-  has_many :reports
+  has_many :reports, dependent: :destroy
   
   has_one_attached :main_image
   has_many_attached :sub_images

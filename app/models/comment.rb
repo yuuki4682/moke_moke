@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :work
   
   has_many :notifications, dependent: :destroy
-  has_many :reports
+  has_many :reports, dependent: :destroy
   
   validates :message, presence: true, length: { maximum: 30 } 
   
