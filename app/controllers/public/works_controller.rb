@@ -4,11 +4,9 @@ class Public::WorksController < ApplicationController
   
   def index
     if params[:like]
-      works = Work.sort("like")
-      @works = Kaminari.paginate_array(works).page(params[:page]).per(5)
+      @works = Work.sort("like").page(params[:page]).per(5)
     elsif params[:pv]
-      works = Work.sort("pv")
-      @works = Kaminari.paginate_array(works).page(params[:page]).per(5)
+      @works = Work.sort("pv").page(params[:page]).per(5)
     else
       @works = Work.all.order(created_at: :desc).page(params[:page]).per(5)
     end

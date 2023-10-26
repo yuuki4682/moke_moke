@@ -27,7 +27,7 @@
                 <p class="m-0">
                   <%= link_to '詳細', work_path(work), class:"text-link mx-1" %>|
                   <%= link_to '編集', edit_work_path(work), class:"text-link mx-1" %>|
-                  <%= link_to '削除', work_path(work), method: :delete, class:"text-danger mx-1" %>
+                  <%= link_to '削除', work_path(work), method: :delete, class:"text-danger mx-1", "data-confirm" => "本当に削除しますか？" %>
                 </p>
               </div>
             </div>

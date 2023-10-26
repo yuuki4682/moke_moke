@@ -32,3 +32,10 @@
   --swiper-navigation-color: #ffffff;
   --swiper-pagination-color: #ffffff;
 }
+
+.field_with_errors {
+  display: contents;
+  input, textarea {
+    @extend .is-invalid;
+  }
+}

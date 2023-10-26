@@ -10,7 +10,7 @@ class Work < ApplicationRecord
   has_many :tags, through: :work_tags
   
   has_many :notifications, dependent: :destroy
-  has_many :reports
+  has_many :reports, dependent: :destroy
   
   has_one_attached :main_image
   has_many_attached :sub_images
@@ -48,13 +48,15 @@ class Work < ApplicationRecord
   end
   
   #一週間にいいねが多い順に並び替え
+  
+  has_many :week_likes, ->{ where(created_at: (Time.current.at_end_of_day - 6.day).at_beginning_of_day...Time.current.at_end_of_day)}, class_name: "Like"
+  has_many :week_view_counts, ->{ where(created_at: (Time.current.at_end_of_day - 6.day).at_beginning_of_day...Time.current.at_end_of_day)}, class_name: "ViewCount"
+  
   def self.sort(option)
-    to  = Time.current.at_end_of_day
-    from  = (to - 6.day).at_beginning_of_day
     if option == "like"
-      all.sort_by{|work|work.likes.where(created_at: from...to).count}.reverse
+      left_joins(:week_likes).group(:id).order("count(likes.work_id) desc")
     elsif option == "pv"
-      all.sort_by{|work|work.view_counts.where(created_at: from...to).count}.reverse
+      left_joins(:week_view_counts).group(:id).order("count(view_counts.work_id) desc")
     end
   end
   
